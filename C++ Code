@@ -1,0 +1,85 @@
+// G_Benitez_New_Midterm1.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//Programmer: Gabriel Benitez
+//Program: Exponential Summation of Talyor Series up to 9 terms. e^x = Summation ((n^x)/x!)
+//Description: e^x = Summation ((n^x)/x!) where n is the number the user enters. x is the number of terms, which will be from 0 to 10
+//			   Entering a negative number ENDS the program
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double x;
+
+	double fact = 1.0;
+	double base;			//base is n in the equation: (n^x)/x!
+	double num = 1.0;
+
+
+	do {
+		double sum = 0.0;
+		double div = 0.0;
+
+		cout << "\nEnter a Positve Number to Continue  or  Enter a Negative Number to Exit.\n";
+
+		cout << "\nEnter Number: ";
+		cin >> x;
+		base = x;
+
+		if (x > 0)
+		{
+			for (int t = 0; t <= 10; t++)
+			{
+				//Loop for x^n (The Numerator)
+				for (int n = 0; n <= t; n++)
+				{
+					if (n == 0)
+					{
+						num = 1;
+					}
+					else
+					{
+						num = base * num;
+					}
+				}
+				//cout << "\nNum is " << base << "^" << t << " is " << num << endl;
+
+
+				//Loop for Factorial x! (The Denominator)
+				for (int i = 0; i <= t; i++)
+				{
+					if (i == 0)
+					{
+						fact = 1;
+					}
+					else
+					{
+						fact = fact * i;
+					}
+				}
+				//cout << "\nThe factorial of " << t << " is " << fact << endl;
+
+				// Numerator divided by denominator
+				div = num / fact;
+
+				// The of the Series Sum
+				sum = sum + div;
+
+
+				cout << "\nTerm " << t << ": \n";
+				cout << num << " / " << fact << " is " << div;
+				cout << "\nThe sum of Term " << t << " is " << sum << endl;
+
+			}
+			cout << "\nThe value of e^" << x << " using Taylor series up to 11 terms is: " << sum << endl;
+		}
+		else
+		{
+			cout << "\nExiting the program, PRESS Any Key\n";
+		}
+
+	} while (x > 0);
+	
+	return 0;
+}
